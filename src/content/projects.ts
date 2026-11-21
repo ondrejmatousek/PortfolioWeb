@@ -331,10 +331,6 @@ export const projects: Project[] = [
       alt: { cs: "Sezónní křivka EUR/USD v aplikaci SeasonalityApp", en: "EUR/USD seasonal curve in SeasonalityApp" },
     },
     services: ["software-development", "mvp-product"],
-    todo: {
-      cs: "Ověřte, že je repozitář na GitHubu veřejný, jinak odkaz na zdrojový kód odstraňte.",
-      en: "Confirm the GitHub repository is public, otherwise remove the source code link.",
-    },
   },
   {
     slug: "insiders-app",
@@ -393,7 +389,7 @@ export const projects: Project[] = [
       width: 1600,
       height: 1000,
       displayUrl: "delightful-plant-0aa1ef610.2.azurestaticapps.net",
-      alt: { cs: "Přehled posledních změn v portfoliích institucí (13F)", en: "Latest institutional portfolio moves (13F)" },
+      alt: { cs: "Úvodní stránka Gurus s ilustrací a přehledem portfolií institucí z formulářů 13F", en: "Gurus homepage with an illustration and an overview of institutional 13F portfolios" },
     },
     services: ["ai-automation", "mvp-product", "software-development"],
     todo: {
@@ -452,12 +448,14 @@ export const projects: Project[] = [
       ],
     },
     liveUrl: "https://tradingjournal-dmdvfwfrgzdfdga3.westeurope-01.azurewebsites.net/TradingJournals",
-    repoUrl: "https://github.com/ondrejmatousek/TradingJournal",
-    services: ["software-development", "ai-automation"],
-    todo: {
-      cs: "Aplikace je za přihlášením, proto je zde zatím ilustrace. Pošlete screenshot z aplikace (public/work/tradingjournal.webp) a ověřte, že je repozitář veřejný.",
-      en: "The app is behind sign-in, so an illustration is shown for now. Send a screenshot from inside the app (public/work/tradingjournal.webp) and confirm the repository is public.",
+    image: {
+      src: "/work/tradingjournal.webp",
+      width: 1280,
+      height: 711,
+      displayUrl: "tradingjournal-dmdvfwfrgzdfdga3.westeurope-01.azurewebsites.net",
+      alt: { cs: "Úvodní stránka Trading Journal s promo náhledem dashboardu", en: "Trading Journal landing page with a dashboard promo preview" },
     },
+    services: ["software-development", "ai-automation"],
   },
   {
     slug: "wild-spirit",
