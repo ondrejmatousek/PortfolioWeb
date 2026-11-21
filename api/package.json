@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-web-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Managed Azure Functions API for Azure Static Web Apps (contact form)",
+  "main": "src/functions/*.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.0"
+  }
+}

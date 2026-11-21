@@ -3,12 +3,12 @@
 Personal portfolio and studio site: software development, websites, AI & automation, MVPs.
 Bilingual (CS / EN), dark-first with an optional light theme.
 
-**Stack:** Next.js 16 (App Router, Cache Components) · TypeScript · Tailwind CSS 4 · Motion · Lucide.
+**Stack:** Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS 4 · Motion · Lucide.
 No other runtime dependencies.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000 → redirects to /cs or /en by Accept-Language
+npm run dev      # http://localhost:3000/cs (or /en)
 npm run check    # lint + typecheck + production build
 ```
 
@@ -28,7 +28,6 @@ All tokens live in [`src/app/globals.css`](src/app/globals.css).
 src/
   app/
     [locale]/            # root layout, home, work, case studies, services, OG image, 404
-    api/contact/         # contact form endpoint (Resend)
     global-not-found.tsx # 404 for URLs outside any locale
     sitemap.ts robots.ts icon.svg
   content/               # ← all site content, separate from presentation
@@ -38,7 +37,6 @@ src/
     tech.ts process.ts
   i18n/                  # locales + UI dictionaries (cs / en)
   components/            # layout, sections, work, contact, ui
-  proxy.ts               # locale redirect (Next 16 "proxy", formerly middleware)
 ```
 
 ### Adding a project
@@ -62,9 +60,9 @@ Append an object to [`src/content/projects.ts`](src/content/projects.ts). It aut
 
 ## Contact form
 
-`POST /api/contact` validates input (shared rules in `src/lib/contact.ts`), has a honeypot and a basic per-instance rate limit, and sends via the [Resend](https://resend.com) REST API.
+The form posts to `/api/contact`, a managed **Azure Function** in [`api/`](api/) (Node 20). Logic is in `api/src/contact-core.js` with tests (`cd api && npm test`). Validation mirrors `src/lib/contact.ts`. It has a honeypot, a per-instance rate limit, a 10 s provider timeout, and sends via the [Resend](https://resend.com) REST API.
 
-Set in your hosting environment (see `.env.example`):
+Set these in the Azure portal → Static Web App → **Environment variables** (production):
 
 ```
 RESEND_API_KEY=...
@@ -72,27 +70,35 @@ CONTACT_TO_EMAIL=you@your-domain.cz
 CONTACT_FROM_EMAIL="Portfolio <web@your-domain.cz>"   # domain verified in Resend
 ```
 
-Without them the endpoint returns **503 `not_configured`** and the form tells the visitor the message was **not** sent. It never fakes success.
+Without them the function returns **503 `not_configured`** and the form tells the visitor the message was **not** sent. It never fakes success.
 
-## Deployment
+## Deployment — Azure Static Web Apps (Free)
 
-### Vercel (recommended)
+Live: https://brave-tree-0c058d803.6.azurestaticapps.net (resource group `rg-portfolio-web`, app `portfolio-web`, West Europe).
 
-The site uses a proxy (locale redirect), a route handler (contact form) and Cache Components / Partial Prerendering. Vercel supports all of these with zero configuration.
+The site is a static export (`output: "export"` → `out/`) plus the managed function in `api/`:
 
-1. Push the repository to GitHub and import it in Vercel (framework preset: Next.js).
-2. Add the environment variables above (Production + Preview).
-3. Add your domain and set `NEXT_PUBLIC_SITE_URL` to it. (Without it the site falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`; elsewhere it falls back to `localhost` and the build prints a warning.)
+- `public/staticwebapp.config.json`: 404 page, security headers, Node runtime for the API, OG image rewrites.
+- `public/index.html`: sends `/` to `/cs` or `/en` by browser language (no server-side negotiation on static hosting).
+- `scripts/postbuild-swa.mjs`: copies OG images to `*.png` so SWA serves them as `image/png`.
 
-### Azure
+Redeploy manually:
 
-- **Azure App Service (Linux, Node 20.9+)** — the most predictable Azure option for this feature set: build with `npm run build`, start with `npm run start` (the `PORT` env var is honoured by `next start`). Configure the same environment variables in App Settings.
-- **Azure Static Web Apps** — its Next.js "hybrid" hosting is a preview feature with restrictions. It has not been verified with Next.js 16, the proxy file or Cache Components here. Test it on a preview environment before relying on it.
+```bash
+NEXT_PUBLIC_SITE_URL=https://brave-tree-0c058d803.6.azurestaticapps.net npm run build
+(cd api && npm ci)
+az staticwebapp secrets list -n portfolio-web -g rg-portfolio-web --query properties.apiKey -o tsv   # deployment token
+SWA_CLI_DEPLOYMENT_TOKEN=<token> npx @azure/static-web-apps-cli@2 deploy ./out --api-location ./api --api-language node --api-version 20 --env production
+```
+
+A custom domain can be added for free in the portal (Static Web App → Custom domains). Then update `NEXT_PUBLIC_SITE_URL` and rebuild.
+
+> Avast HTTPS scanning on this machine breaks TLS verification for Azure CLI and Node. Point `REQUESTS_CA_BUNDLE` / `NODE_EXTRA_CA_CERTS` to a PEM bundle that includes the Avast root, or turn off HTTPS scanning for these tools.
 
 ## Quality checklist (implemented)
 
 - CS/EN with `hreflang` alternates, `x-default`, canonical URLs, localized Open Graph images, JSON-LD `Person`.
-- `sitemap.xml` (with language alternates), `robots.txt`, custom 404 (localized + global), real 404 status for unknown slugs.
+- `sitemap.xml` (with language alternates), `robots.txt`, custom 404 with real 404 status (SWA `responseOverrides`).
 - Keyboard: skip link, visible focus rings, WAI-ARIA tabs (arrow keys / Home / End), mobile menu with Escape + focus return, stretched-link cards with focus ring.
 - Contrast-checked tokens for both themes, form errors announced (`aria-invalid`, `aria-describedby`, live region).
 - Fonts self-hosted via `next/font`, no external requests, no client JS needed for the hero.

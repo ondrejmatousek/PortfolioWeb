@@ -27,10 +27,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({ locale, path: `/services/${slug}`, title: service.title[locale], description: service.summary[locale] });
 }
 
-// Known slugs are fully prerendered. Unknown slugs are allowed to block so that
-// notFound() can return a real HTTP 404 instead of a streamed soft 404.
-export const instant = false;
-
 export default async function ServicePage({ params }: Props) {
   const { locale, slug } = await params;
   const service = getService(slug);

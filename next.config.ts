@@ -1,24 +1,20 @@
 import type { NextConfig } from "next";
 
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-];
-
+/**
+ * Static export for Azure Static Web Apps (Free tier).
+ * - No Node server: locale redirect, 404 handling and security headers live in
+ *   public/staticwebapp.config.json.
+ * - The contact form is served by the managed Azure Function in /api.
+ */
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
+  output: "export",
   poweredByHeader: false,
   experimental: {
     globalNotFound: true,
   },
   images: {
-    formats: ["image/avif", "image/webp"],
-  },
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    // The default image optimizer needs a server; static export serves files as-is.
+    unoptimized: true,
   },
   turbopack: {
     rules: {

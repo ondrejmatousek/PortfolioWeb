@@ -24,5 +24,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Content lives in `src/content/*` and `src/i18n/dictionaries.ts`; components only render it. Keep CS and EN in sync (the `Dictionary` type enforces the shape).
 - Never invent project facts, clients, metrics or testimonials. Unknown data → `todo` field or `PLACEHOLDER` comment.
-- `cacheComponents` is on: wrap `new Date()` etc. in `"use cache"` helpers; unknown `[slug]` values are rewritten to a 404 in `src/proxy.ts` (otherwise the PPR fallback shell answers 200).
+- Hosting is Azure Static Web Apps (Free) with `output: "export"`: no proxy, no route handlers, no `headers()` in next.config. Every dynamic route needs `generateStaticParams`; metadata routes need `dynamic = "force-static"`.
+- Redirect, 404 and security headers live in `public/staticwebapp.config.json`; `public/index.html` picks the locale from the browser language.
+- The contact form is the managed Azure Function in `api/` (logic in `api/src/contact-core.js`, tests: `cd api && npm test`). Keep its validation in sync with `src/lib/contact.ts`.
 - Run `npm run check` (lint + typecheck + build) before finishing.

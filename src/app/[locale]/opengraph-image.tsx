@@ -1,7 +1,13 @@
 import { ImageResponse } from "next/og";
-import { defaultLocale, hasLocale } from "@/i18n/config";
+import { defaultLocale, hasLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/content/site";
+
+export const dynamic = "force-static";
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export const alt = "Ondřej Matoušek — software, web & AI";
 export const size = { width: 1200, height: 630 };

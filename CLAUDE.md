@@ -11,6 +11,7 @@ app-development skill (C:\AI-Harness\skills\app-development\SKILL.md).
   changes, commits and pushes.
 
 ## Project notes
-- Technology: Next.js 16 (App Router, Cache Components), TypeScript, Tailwind CSS 4, Motion, Lucide
+- Technology: Next.js 16 (App Router, static export), TypeScript, Tailwind CSS 4, Motion, Lucide; Azure Functions (Node) in api/
+- Hosting: Azure Static Web Apps Free (rg-portfolio-web / portfolio-web); deployment needs approval
 - Build / run: `npm run dev` (http://localhost:3000), `npm run check` (lint + typecheck + build)
 - Next.js-specific agent rules and project conventions: see AGENTS.md

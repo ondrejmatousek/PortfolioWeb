@@ -8,13 +8,8 @@ import { Container } from "@/components/ui/primitives";
 import { Logo } from "./Logo";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 
-async function buildYear() {
-  "use cache";
-  return new Date().getFullYear();
-}
-
-export async function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const year = await buildYear();
+export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const year = new Date().getFullYear(); // build year (static export)
   const home = `/${locale}`;
   return (
     <footer className="relative border-t border-line">
