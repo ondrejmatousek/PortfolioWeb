@@ -107,7 +107,7 @@ export const services: Service[] = [
       ],
     },
     stack: ["WordPress", "Divi", "Next.js", "React", "TypeScript", "HTML", "CSS"],
-    relatedProjects: ["wild-spirit", "gastropozice"],
+    relatedProjects: ["ucetnictvi-dokoupilova", "wild-spirit", "gastropozice"],
   },
   {
     slug: "ai-automation",

@@ -20,7 +20,7 @@ export interface Service {
 }
 
 export type ProjectStatus = "live" | "pilot" | "in-development" | "internal" | "placeholder";
-export type ProjectArt = "jobs" | "replay" | "watcher" | "seasonality" | "insiders" | "shop";
+export type ProjectArt = "jobs" | "replay" | "journal" | "seasonality" | "insiders" | "shop";
 
 export interface Project {
   slug: string;
@@ -43,8 +43,11 @@ export interface Project {
   role?: Localized;
   liveUrl?: string;
   repoUrl?: string;
-  /** Optional real screenshot in /public (e.g. "/work/gastropozice.webp"). Falls back to illustrative art. */
-  image?: { src: string; alt: Localized; width: number; height: number };
+  /**
+   * Real screenshot in /public (e.g. "/work/gastropozice.webp"), shown in a browser frame
+   * whose address bar shows `displayUrl`. Without it, illustrative art is used.
+   */
+  image?: { src: string; alt: Localized; width: number; height: number; displayUrl?: string };
   /** Notes for the site owner; rendered as a visible placeholder notice. */
   todo?: Localized;
   featured?: boolean;

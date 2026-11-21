@@ -81,28 +81,22 @@ const art: Record<ArtKind, (c: string) => React.ReactNode> = {
       </>
     );
   },
-  watcher: (c) => (
+  journal: (c) => (
     <>
-      <g transform="translate(200 132)">
-        {[96, 68, 40].map((r) => (
-          <circle key={r} r={r} fill="none" stroke="var(--line-strong)" />
-        ))}
-        <line x1="-100" x2="100" stroke="var(--line)" />
-        <line y1="-100" y2="100" stroke="var(--line)" />
-        <path d="M0 0 L96 0 A96 96 0 0 0 68 -68 Z" fill={c} opacity="0.18" />
-        {[[40, -50], [-60, 30], [20, 62], [-30, -70]].map(([x, y], i) => (
-          <g key={i}>
-            <circle cx={x} cy={y} r="9" fill={c} opacity="0.18" />
-            <circle cx={x} cy={y} r="3.5" fill={i === 0 ? c : "var(--fg-muted)"} />
-          </g>
-        ))}
-      </g>
-      <g transform="translate(272 30)">
-        <rect width="104" height="40" rx="8" fill="var(--surface)" stroke="var(--line-strong)" />
-        <circle cx="14" cy="20" r="4" fill={c} />
-        {bar(26, 13, 64, 5, "var(--fg-muted)")}
-        {bar(26, 23, 44, 5)}
-      </g>
+      {panel(30, 30, 340, 200)}
+      {bar(50, 48, 76, 7, "var(--fg-subtle)")}
+      {bar(296, 45, 54, 14, c)}
+      {/* trade entries: screenshot thumbnail, pair, result */}
+      {[0, 1, 2].map((i) => (
+        <g key={i} transform={`translate(50 ${74 + i * 50})`}>
+          <rect width="300" height="40" rx="8" fill="var(--surface-2)" stroke="var(--line)" />
+          <rect x="8" y="7" width="44" height="26" rx="4" fill={c} opacity={0.14 + i * 0.06} />
+          <path d={`M12 ${27 - i * 2} L22 ${20 + i} L30 ${24 - i} L40 ${14 + i} L48 18`} fill="none" stroke={c} strokeWidth="1.5" />
+          {bar(62, 11, 54, 6, "var(--fg-muted)")}
+          {bar(62, 23, 86, 5)}
+          {bar(244, 15, 44, 10, i === 1 ? "#ff6b6b" : "#4fd1a5")}
+        </g>
+      ))}
     </>
   ),
   seasonality: (c) => (

@@ -95,7 +95,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <Reveal>
           <figure className="group relative overflow-hidden rounded-[2rem] border border-line-strong">
             <div className="aspect-[16/8]">
-              <ProjectVisual project={project} locale={locale} priority />
+              <ProjectVisual project={project} locale={locale} priority variant="hero" />
             </div>
             {!project.image && (
               <figcaption className="absolute bottom-4 right-4 rounded-full border border-line bg-bg/75 px-3 py-1 font-mono text-xs text-fg-muted backdrop-blur">

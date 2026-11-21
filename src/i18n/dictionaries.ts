@@ -188,7 +188,6 @@ const cs = {
     tagline: "Software, weby a AI řešení postavená na pevném inženýrském základu.",
     rights: "Všechna práva vyhrazena.",
     backToTop: "Zpět nahoru",
-    built: "Postaveno v Next.js, TypeScriptu a Tailwind CSS.",
   },
   notFound: {
     title: "Tahle stránka neexistuje",
@@ -388,7 +387,6 @@ const en: Dictionary = {
     tagline: "Software, websites and AI solutions built on solid engineering.",
     rights: "All rights reserved.",
     backToTop: "Back to top",
-    built: "Built with Next.js, TypeScript and Tailwind CSS.",
   },
   notFound: {
     title: "This page doesn't exist",

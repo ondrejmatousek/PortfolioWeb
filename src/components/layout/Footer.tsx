@@ -70,7 +70,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       </Container>
       <Container className="flex flex-col gap-4 border-t border-line py-6 text-sm text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {year} {site.name}. {dict.footer.rights} <span className="hidden md:inline">· {dict.footer.built}</span>
+          © {year} {site.name}. {dict.footer.rights}
         </p>
         <a href="#top" className="inline-flex items-center gap-2 transition-colors hover:text-fg">
           {dict.footer.backToTop} <ArrowUp aria-hidden className="size-4" />

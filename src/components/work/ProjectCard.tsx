@@ -8,21 +8,61 @@ import { StatusDot } from "@/components/ui/primitives";
 import { cn } from "@/lib/cn";
 import { ProjectArt } from "./ProjectArt";
 
-export function ProjectVisual({ project, locale, priority }: { project: Project; locale: Locale; priority?: boolean }) {
-  if (project.image) {
-    return (
-      <Image
-        src={project.image.src}
-        alt={project.image.alt[locale]}
-        width={project.image.width}
-        height={project.image.height}
-        priority={priority}
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="h-full w-full object-cover"
-      />
-    );
-  }
-  return <ProjectArt kind={project.art} color={project.color} />;
+/**
+ * Real screenshot presented in a minimal browser window over a soft project-coloured glow,
+ * or the illustrative art when no screenshot exists.
+ */
+export function ProjectVisual({
+  project,
+  locale,
+  priority,
+  variant = "card",
+}: {
+  project: Project;
+  locale: Locale;
+  priority?: boolean;
+  variant?: "card" | "hero";
+}) {
+  const image = project.image;
+  if (!image) return <ProjectArt kind={project.art} color={project.color} />;
+
+  return (
+    <div
+      className="relative h-full w-full overflow-hidden bg-surface-2"
+      style={{
+        backgroundImage: `radial-gradient(120% 90% at 75% 0%, color-mix(in oklab, ${project.color} 30%, transparent), transparent 60%), radial-gradient(var(--line-strong) 0.8px, transparent 0.8px)`,
+        backgroundSize: "100% 100%, 14px 14px",
+      }}
+    >
+      <div
+        className={cn(
+          "absolute bottom-0 flex flex-col overflow-hidden rounded-t-xl border border-b-0 border-line-strong bg-surface shadow-[0_30px_70px_-25px_rgb(0_0_0/0.65)] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-1.5",
+          variant === "hero" ? "inset-x-[6%] top-[9%] sm:inset-x-[9%]" : "inset-x-[7%] top-[19%]",
+        )}
+      >
+        <div aria-hidden className="flex h-6 shrink-0 items-center gap-1.5 border-b border-line bg-surface-2 px-3 sm:h-7">
+          <span className="size-2 rounded-full bg-fg-subtle/40" />
+          <span className="size-2 rounded-full bg-fg-subtle/40" />
+          <span className="size-2 rounded-full bg-fg-subtle/40" />
+          {image.displayUrl && (
+            <span className="mx-auto max-w-[60%] truncate rounded-md bg-bg/60 px-2.5 py-0.5 font-mono text-[0.55rem] text-fg-subtle sm:text-[0.6rem]">
+              {image.displayUrl}
+            </span>
+          )}
+        </div>
+        <div className="relative min-h-0 flex-1">
+          <Image
+            src={image.src}
+            alt={image.alt[locale]}
+            fill
+            priority={priority}
+            sizes={variant === "hero" ? "(min-width: 1240px) 1100px, 90vw" : "(min-width: 1024px) 45vw, 90vw"}
+            className="object-cover object-top"
+          />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function ProjectCard({
@@ -40,7 +80,7 @@ export function ProjectCard({
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/60 transition-[border-color,transform,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-line-strong hover:shadow-[0_40px_80px_-40px_rgb(0_0_0/0.6)]">
       <div className={cn("relative overflow-hidden border-b border-line", size === "large" ? "aspect-[16/9]" : "aspect-[16/10]")}>
-        <div className="h-full w-full transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]">
+        <div className={cn("h-full w-full transition-transform duration-700 ease-[var(--ease-out-expo)]", !project.image && "group-hover:scale-[1.03]")}>
           <ProjectVisual project={project} locale={locale} />
         </div>
         {!project.image && (

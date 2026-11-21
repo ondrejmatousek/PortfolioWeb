@@ -43,8 +43,8 @@ src/
 
 Append an object to [`src/content/projects.ts`](src/content/projects.ts). It automatically appears on the home page, `/work`, gets a case-study page, sitemap entry and static generation. Only list technologies you can back up.
 
-- `art` picks one of the illustrative SVG previews (`jobs`, `replay`, `watcher`, `seasonality`, `insiders`, `shop`) — they are labelled *illustrative* in the UI.
-- Add a real screenshot with `image: { src: "/work/name.webp", alt: {...}, width, height }` — it replaces the illustration.
+- `art` picks one of the illustrative SVG previews (`jobs`, `replay`, `journal`, `seasonality`, `insiders`, `shop`) — they are labelled *illustrative* in the UI.
+- Add a real screenshot with `image: { src: "/work/name.webp", alt: {...}, width, height, displayUrl }` (WebP, ~1600 px wide). It is shown in a browser frame and replaces the illustration.
 - `todo` renders a visible "note to complete" box on the case study. Remove it once the data is filled in.
 
 ## Placeholders to fill in before launch
@@ -52,9 +52,9 @@ Append an object to [`src/content/projects.ts`](src/content/projects.ts). It aut
 | Where | What |
 |---|---|
 | `src/content/site.ts` | Confirm full name, add LinkedIn URL and (optionally) public e-mail. Hidden in the UI while `null`. |
-| `projects.ts` → `trade-watcher` | Repository was empty — description, features and stack are placeholders. |
+| `projects.ts` → `trading-journal` | App is behind sign-in: add an in-app screenshot as `public/work/tradingjournal.webp`. |
 | `projects.ts` → `insiders-app` | Mapped to the **Gurus** repository (13F + SEC Form 4). Confirm this is the intended project. |
-| `projects.ts` → all | Your role, year, real screenshots, public URLs for SeasonalityApp / TradeReplay / Insiders App if you want them shown. |
+| `projects.ts` → all | Your role and year; public URLs for TradeReplay / Insiders App if you want them shown. |
 | `tech.ts` | Review the three levels (professional / in projects / workflow). |
 | Environment | `NEXT_PUBLIC_SITE_URL`, contact form variables (see below). |
 
