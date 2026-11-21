@@ -2,13 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSyncExternalStore } from "react";
 import { locales, localeNames, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/cn";
+
+const subscribeHash = (cb: () => void) => {
+  window.addEventListener("hashchange", cb);
+  return () => window.removeEventListener("hashchange", cb);
+};
 
 /** CS / EN segmented switch that keeps the visitor on the equivalent page. */
 export function LocaleSwitcher({ locale, label }: { locale: Locale; label: string }) {
   const pathname = usePathname() ?? `/${locale}`;
   const rest = pathname.replace(/^\/(cs|en)(?=\/|$)/, "");
+  // Keep the in-page section (e.g. #contact) when switching language.
+  const hash = useSyncExternalStore(subscribeHash, () => window.location.hash, () => "");
 
   return (
     <div role="group" aria-label={label} className="flex items-center rounded-full border border-line p-0.5 font-mono text-xs">
@@ -17,7 +25,7 @@ export function LocaleSwitcher({ locale, label }: { locale: Locale; label: strin
         return (
           <Link
             key={l}
-            href={`/${l}${rest}`}
+            href={`/${l}${rest}${hash}`}
             hrefLang={localeNames[l].htmlLang}
             lang={localeNames[l].htmlLang}
             aria-current={active ? "true" : undefined}

@@ -8,7 +8,7 @@ export interface ContactPayload {
   type: ProjectType | "";
   message: string;
   /** Honeypot — must stay empty. */
-  company?: string;
+  hp_check?: string;
   locale?: string;
 }
 
@@ -16,11 +16,14 @@ export type ContactField = "name" | "email" | "type" | "message";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-export function validateContact(p: Partial<ContactPayload>): ContactField[] {
+const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+
+/** Accepts untrusted input of any shape; non-string fields count as invalid. */
+export function validateContact(p: Partial<Record<keyof ContactPayload, unknown>>): ContactField[] {
   const errors: ContactField[] = [];
-  const name = (p.name ?? "").trim();
-  const email = (p.email ?? "").trim();
-  const message = (p.message ?? "").trim();
+  const name = str(p.name);
+  const email = str(p.email);
+  const message = str(p.message);
   if (name.length < 2 || name.length > 120) errors.push("name");
   if (!EMAIL_RE.test(email) || email.length > 200) errors.push("email");
   if (!projectTypes.includes(p.type as ProjectType)) errors.push("type");

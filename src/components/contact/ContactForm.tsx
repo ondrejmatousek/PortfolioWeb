@@ -24,7 +24,7 @@ export function ContactForm({ locale, dict, email }: { locale: Locale; dict: Dic
       email: String(data.get("email") ?? ""),
       type: String(data.get("type") ?? "") as ContactPayload["type"],
       message: String(data.get("message") ?? ""),
-      company: String(data.get("company") ?? ""),
+      hp_check: String(data.get("hp_check") ?? ""),
       locale,
     };
 
@@ -161,8 +161,8 @@ export function ContactForm({ locale, dict, email }: { locale: Locale; dict: Dic
 
       {/* Honeypot: hidden from people and assistive tech */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+        <label htmlFor="hp_check">Leave this field empty</label>
+        <input id="hp_check" name="hp_check" type="text" tabIndex={-1} autoComplete="new-password" />
       </div>
 
       <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">

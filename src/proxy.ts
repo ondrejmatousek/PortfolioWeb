@@ -24,7 +24,7 @@ function preferredLocale(request: NextRequest): Locale {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const [, first = "", section, slug, ...extra] = pathname.split("/");
+  const [first = "", section, slug, ...extra] = pathname.split("/").filter(Boolean);
   if (hasLocale(first)) {
     // Unknown case-study / service slugs would otherwise be served from the
     // partially prerendered fallback shell with HTTP 200 (a "soft 404").

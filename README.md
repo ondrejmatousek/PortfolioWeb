@@ -82,7 +82,7 @@ The site uses a proxy (locale redirect), a route handler (contact form) and Cach
 
 1. Push the repository to GitHub and import it in Vercel (framework preset: Next.js).
 2. Add the environment variables above (Production + Preview).
-3. Add your domain and set `NEXT_PUBLIC_SITE_URL` to it.
+3. Add your domain and set `NEXT_PUBLIC_SITE_URL` to it. (Without it the site falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`; elsewhere it falls back to `localhost` and the build prints a warning.)
 
 ### Azure
 
