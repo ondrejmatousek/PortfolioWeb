@@ -88,10 +88,6 @@ export const projects: Project[] = [
       alt: { cs: "Úvodní stránka Gastropozice.cz s vyhledáváním pracovních nabídek", en: "Gastropozice.cz homepage with job search" },
     },
     services: ["software-development", "websites-ecommerce"],
-    todo: {
-      cs: "Doplňte svou roli v projektu a rok spuštění.",
-      en: "Add your role in the project and the launch year.",
-    },
   },
   {
     slug: "ucetnictvi-dokoupilova",
@@ -141,10 +137,6 @@ export const projects: Project[] = [
       alt: { cs: "Úvodní stránka webu Účetnictví Dokoupilová", en: "Homepage of the Účetnictví Dokoupilová website" },
     },
     services: ["websites-ecommerce"],
-    todo: {
-      cs: "Doplňte svou roli v projektu (návrh, realizace, správa) a rok spuštění.",
-      en: "Add your role in the project (design, build, maintenance) and the launch year.",
-    },
   },
   {
     slug: "trade-replay",
@@ -350,8 +342,8 @@ export const projects: Project[] = [
       en: "Public data on what large funds and company insiders are buying is scattered across thousands of SEC EDGAR filings. Reading them by hand is slow, and patterns — like several insiders buying at the same time — are easy to miss.",
     },
     solution: {
-      cs: "Collector v .NET stahuje a zpracovává podání 13F a Form 4, mapuje CUSIP na tickery a ukládá výsledky jako data pro rychlý React frontend. Aplikace ukazuje profily institucí, držitele akcií a nákupy insiderů včetně detekce clusterů.",
-      en: "A .NET collector downloads and processes 13F and Form 4 filings, maps CUSIPs to tickers and stores the results as data for a fast React frontend. The app shows institution profiles, stock holders and insider purchases, including cluster detection.",
+      cs: "Collector v .NET stahuje a zpracovává podání 13F a Form 4, mapuje CUSIP na tickery a ukládá výsledky jako data pro rychlý React frontend. Aplikace ukazuje profily institucí, držitele akcií a nákupy insiderů včetně detekce clusterů. Slouží pouze k informačním účelům, nejde o investiční doporučení.",
+      en: "A .NET collector downloads and processes 13F and Form 4 filings, maps CUSIPs to tickers and stores the results as data for a fast React frontend. The app shows institution profiles, stock holders and insider purchases, including cluster detection. It is for information only and is not investment advice.",
     },
     features: {
       cs: [
@@ -392,10 +384,6 @@ export const projects: Project[] = [
       alt: { cs: "Úvodní stránka Gurus s ilustrací a přehledem portfolií institucí z formulářů 13F", en: "Gurus homepage with an illustration and an overview of institutional 13F portfolios" },
     },
     services: ["ai-automation", "mvp-product", "software-development"],
-    todo: {
-      cs: "Ověřte, že „Insiders App“ odpovídá repozitáři Gurus, a doplňte veřejný odkaz, pokud existuje. Aplikace slouží pouze k informačním účelům, nejde o investiční doporučení.",
-      en: "Confirm that “Insiders App” corresponds to the Gurus repository and add a public link if there is one. The app is for information only and is not investment advice.",
-    },
   },
   {
     slug: "trading-journal",

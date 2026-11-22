@@ -54,7 +54,9 @@ export default async function CaseStudyPage({ params }: Props) {
           <h1 className="mt-5 text-5xl font-semibold leading-[0.95] sm:text-7xl lg:text-8xl">{project.name}</h1>
           <p className="mt-6 max-w-3xl text-xl leading-relaxed text-fg-muted sm:text-2xl">{project.tagline[locale]}</p>
 
-          <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <dl
+            className={`mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line ${project.codename ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"}`}
+          >
             <div className="bg-bg p-5">
               <dt className="font-mono text-xs uppercase tracking-[0.14em] text-fg-subtle">{c.status}</dt>
               <dd className="mt-2 flex items-center gap-2">
@@ -83,10 +85,12 @@ export default async function CaseStudyPage({ params }: Props) {
                 {!project.liveUrl && !project.repoUrl && <span className="text-fg-subtle">—</span>}
               </dd>
             </div>
-            <div className="bg-bg p-5">
-              <dt className="font-mono text-xs uppercase tracking-[0.14em] text-fg-subtle">{project.codename ? c.codename : c.role}</dt>
-              <dd className="mt-2">{project.codename ?? project.role?.[locale] ?? <span className="text-fg-subtle">—</span>}</dd>
-            </div>
+            {project.codename && (
+              <div className="bg-bg p-5">
+                <dt className="font-mono text-xs uppercase tracking-[0.14em] text-fg-subtle">{c.codename}</dt>
+                <dd className="mt-2">{project.codename}</dd>
+              </div>
+            )}
           </dl>
         </Container>
       </header>

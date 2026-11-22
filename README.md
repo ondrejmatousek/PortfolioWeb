@@ -52,8 +52,6 @@ Append an object to [`src/content/projects.ts`](src/content/projects.ts). It aut
 | Where | What |
 |---|---|
 | `src/content/site.ts` | Confirm full name, add LinkedIn URL and (optionally) public e-mail. Hidden in the UI while `null`. |
-| `projects.ts` → `insiders-app` | Mapped to the **Gurus** repository (13F + SEC Form 4). Confirm this is the intended project. |
-| `projects.ts` → all | Your role and year; public URLs for TradeReplay / Insiders App if you want them shown. |
 | `tech.ts` | Review the three levels (professional / in projects / workflow). |
 | Environment | `NEXT_PUBLIC_SITE_URL`, contact form variables (see below). |
 

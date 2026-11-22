@@ -40,7 +40,6 @@ export interface Project {
   /** Verified from the project's repository. Leave empty when unknown. */
   stack: string[];
   architecture?: Localized<string[]>;
-  role?: Localized;
   liveUrl?: string;
   repoUrl?: string;
   /**
