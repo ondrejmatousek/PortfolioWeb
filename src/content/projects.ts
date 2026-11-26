@@ -199,6 +199,7 @@ export const projects: Project[] = [
       alt: { cs: "Úvodní stránka TradeReplay s ukázkou replaye grafu EUR/USD a přihlášením", en: "TradeReplay landing page with an EUR/USD chart replay preview and sign-in" },
     },
     liveUrl: "https://tradereplay.138-2-189-34.sslip.io/",
+    repoUrl: "https://github.com/ondrejmatousek/TradeReplay",
     services: ["mvp-product"],
   },
   {
@@ -253,6 +254,7 @@ export const projects: Project[] = [
       ],
     },
     liveUrl: "https://tradestats.138-2-189-34.sslip.io/",
+    repoUrl: "https://github.com/ondrejmatousek/TradeStats",
     image: {
       src: "/work/tradestats.webp",
       width: 1600,
@@ -364,6 +366,7 @@ export const projects: Project[] = [
       ],
     },
     stack: ["C#", ".NET 10", "React", "TypeScript", "Vite", "React Router", "xUnit", "Vitest", "Azure Static Web Apps", "GitHub Actions"],
+    repoUrl: "https://github.com/ondrejmatousek/gurus",
     architecture: {
       cs: [
         "Konzolový collector v .NET generuje datové soubory – bez serveru a databáze za běhu",
@@ -436,6 +439,7 @@ export const projects: Project[] = [
       ],
     },
     liveUrl: "https://tradingjournal-dmdvfwfrgzdfdga3.westeurope-01.azurewebsites.net/TradingJournals",
+    repoUrl: "https://github.com/ondrejmatousek/TradingJournal",
     image: {
       src: "/work/tradingjournal.webp",
       width: 1280,
@@ -508,6 +512,7 @@ export const projects: Project[] = [
       alt: { cs: "Úvodní stránka e-shopu Wild Spirit (testovací nasazení)", en: "Wild Spirit store homepage (test deployment)" },
     },
     liveUrl: "https://victorious-glacier-0f0db2103.8.azurestaticapps.net/cs-CZ/",
+    repoUrl: "https://github.com/ondrejmatousek/WildSpirit",
     services: ["websites-ecommerce", "software-development"],
   },
 ];
