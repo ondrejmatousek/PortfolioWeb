@@ -48,7 +48,6 @@ export const techGroups: TechGroup[] = [
       { name: "CSS", level: "professional" },
       { name: "JavaScript", level: "professional" },
       { name: "TypeScript", level: "projects" },
-      { name: "React", level: "projects" },
       { name: "Next.js", level: "projects" },
     ],
   },

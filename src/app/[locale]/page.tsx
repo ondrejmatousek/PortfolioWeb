@@ -26,7 +26,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     jobTitle: site.role[locale],
     url: `${site.url}/${locale}`,
     sameAs: [site.links.github, site.links.linkedin].filter(Boolean),
-    knowsAbout: ["C#", ".NET", "ASP.NET Core", "SQL Server", "REST API", "React", "Next.js", "WordPress", "AI automation"],
+    knowsAbout: ["C#", ".NET", "ASP.NET Core", "SQL Server", "REST API", "Next.js", "WordPress", "AI automation"],
     makesOffer: services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title[locale], description: s.summary[locale] } })),
   };
 

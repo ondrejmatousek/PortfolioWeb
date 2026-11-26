@@ -65,8 +65,8 @@ export const services: Service[] = [
       en: "Company websites, landing pages and online stores that sell.",
     },
     summary: {
-      cs: "Moderní responzivní weby ve WordPressu (Divi) nebo na míru v Reactu a Next.js. Redesign zastaralých webů s důrazem na rychlost, SEO a jasnou cestu zákazníka ke kontaktu.",
-      en: "Modern responsive websites in WordPress (Divi) or custom-built with React and Next.js. Redesigns of outdated sites with a focus on speed, SEO and a clear path to getting in touch.",
+      cs: "Moderní responzivní weby ve WordPressu (Divi) nebo na míru v Next.js. Redesign zastaralých webů s důrazem na rychlost, SEO a jasnou cestu zákazníka ke kontaktu.",
+      en: "Modern responsive websites in WordPress (Divi) or custom-built with Next.js. Redesigns of outdated sites with a focus on speed, SEO and a clear path to getting in touch.",
     },
     keywords: {
       cs: ["WordPress / Divi", "Next.js", "E-shopy", "Redesign"],
@@ -81,7 +81,7 @@ export const services: Service[] = [
         { title: "Firemní weby", text: "Přehledná prezentace firmy, služeb a referencí s jednoduchou správou obsahu." },
         { title: "Landing pages", text: "Jednostránkové weby pro kampaně a produkty zaměřené na konverzi." },
         { title: "E-shopy", text: "Katalog, košík, objednávky a správa produktů podle velikosti a potřeb obchodu." },
-        { title: "Webové aplikace", text: "Interaktivní aplikace v Reactu a Next.js s napojením na API a databázi." },
+        { title: "Webové aplikace", text: "Interaktivní aplikace v Next.js s napojením na API a databázi." },
         { title: "Redesign", text: "Modernizace zastaralého webu bez ztráty obsahu a pozic ve vyhledávání." },
         { title: "SEO a výkon", text: "Technické SEO, metadata, Core Web Vitals, přístupnost a optimalizace obrázků." },
       ],
@@ -89,7 +89,7 @@ export const services: Service[] = [
         { title: "Company websites", text: "A clear presentation of your company, services and work, with simple content management." },
         { title: "Landing pages", text: "Conversion-focused single-page sites for campaigns and products." },
         { title: "Online stores", text: "Catalogue, cart, orders and product management sized to your business." },
-        { title: "Web applications", text: "Interactive React and Next.js applications backed by an API and a database." },
+        { title: "Web applications", text: "Interactive Next.js applications backed by an API and a database." },
         { title: "Redesign", text: "Modernising an outdated site without losing content or search rankings." },
         { title: "SEO & performance", text: "Technical SEO, metadata, Core Web Vitals, accessibility and image optimisation." },
       ],
@@ -106,7 +106,7 @@ export const services: Service[] = [
         "You want to start selling online and need a store you can manage yourself.",
       ],
     },
-    stack: ["WordPress", "Divi", "Next.js", "React", "TypeScript", "HTML", "CSS"],
+    stack: ["WordPress", "Divi", "Next.js", "TypeScript", "HTML", "CSS"],
     relatedProjects: ["ucetnictvi-dokoupilova", "wild-spirit", "gastropozice"],
   },
   {
@@ -206,7 +206,7 @@ export const services: Service[] = [
         "You want to turn an internal tool your team runs in spreadsheets into an app.",
       ],
     },
-    stack: ["Next.js", "React", "TypeScript", "ASP.NET Core", "SQL Server", "SQLite", "Azure"],
+    stack: ["Next.js", "TypeScript", "ASP.NET Core", "SQL Server", "SQLite", "Azure"],
     relatedProjects: ["trade-replay", "insiders-app", "seasonality-app"],
   },
 ];
